@@ -7,15 +7,15 @@ The official tutorial will be available at [https://www.mokuji.me](https://www.m
 > This project was initialized with [create-react-app](https://github.com/facebookincubator/create-react-app) and had been developed using its default npm script for the development of the client side app. The new script is added to run the server side app.
 
 ## Motivation
-This sample code provides the example of how to render data-fetched HTML on the server side in order to improve SEO.
+This sample code provides the example of how to render __data-fetched HTML on the server side__ in order to improve SEO.
 
-There are many tutorials covering the universal app and React Router. There are, however, only a few that’re concerning the practical use of React. In most tutorials, the sample code contains `data` values defined inside Javascript, although those datas are usualy fetched on the client side in the real-world app. Just simply fetcing data on the server side does’t render the HTML component that you want it to be rendered because those data-based components return the result of `render()` before finishing fetching data.
+There are many tutorials covering the universal app and React Router. There are, however, only a few that’re concerning the practical use of React. In most tutorials, the sample code contains `data` values pre-defined inside Javascript file, although those datas are usualy fetched from the server on the client side in the real-world app. Just simply fetcing data on the server side does’t render the HTML component that you want it to be rendered because those data-based components return the result of `render()` before finishing fetching data.
 
 ## Use
 Clone the repo and change the current directory:
 ```bash
-$ git clone https://github.com/zacfukuda/universal-react-app
-$ cd universal-react-app
+$ git clone https://github.com/zacfukuda/universal-app-react-router
+$ cd universal-app-react-router
 ```
 Install the packages:
 ```bash
@@ -29,7 +29,7 @@ To develop as a client-side single-page app:
 ```bash
 $ yarn start
 ```
-The command will open the browser navigating to `http://localhost:3000` and it will refresh browser everytime you modify the files under `src` directory.
+The command will open the browser navigating to (localhost:3000)[http://localhost:3000] and it will refresh browser everytime you modify the files under `src` directory.
 
 ### Frontend Single Page App
 Build the app:
@@ -37,7 +37,7 @@ Build the app:
 $ yarn build
 ```
 
-Add `<%- html %>` inside `<div id="root"></div>` of `build/index.html`.
+Modify the `div` element to `<div id="root"><%- html %></div>` inside of `build/index.html`.
 Then change the name of the file:
 ```bash
 $ mv build/index.html build/index.ejs
@@ -48,10 +48,10 @@ Run server:
 $ yarn server
 ```
 
-Visit [http://localhost:3000] and [the source of the home page]() or [the books page](). You’ll see the all contents are rendered from the server.
+Visit [localhost:3000](http://localhost:3000) and [the source of the home page](view-source:http://localhost:3000) or [view-source:the books page](http://localhost:3000/books). You’ll see the all contents are rendered from the server.
 
 ### If not change the name to index.ejs
-> If you are opening `/` page, you can still refresh the app. But if you are at the lower page such as `/books`, `/about`, you get the error when you refesh due to the app can’t find the corresponding view file.
+If you are opening `/` page, you can still refresh the app. But if you are at the lower page such as `/books`, `/about`, you get the error when you refesh due to the app can’t find the corresponding view file.
 
 ## Reference
 ### Doc & Repo
