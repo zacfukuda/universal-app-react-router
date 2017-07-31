@@ -48,7 +48,7 @@ Run server:
 $ yarn server
 ```
 
-Visit [localhost:3000](http://localhost:3000) and [the source of the home page](view-source:http://localhost:3000) or [view-source:the books page](http://localhost:3000/books). You’ll see the all contents are rendered from the server.
+Visit [localhost:3000](http://localhost:3000) and the source of the home page or [the books page](http://localhost:3000/books). You’ll see the all contents are rendered from the server.
 
 ### If not change the name to index.ejs
 If you are opening `/` page, you can still refresh the app. But if you are at the lower page such as `/books`, `/about`, you get the error when you refesh due to the app can’t find the corresponding view file.
