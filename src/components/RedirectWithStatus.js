@@ -1,11 +1,11 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 
-const RedirectWithStatus = ({from, to, status}) => (
+const RedirectWithStatus = ({route}) => (
 	<Route render={({ staticContext }) => {
 		if (staticContext)
-			staticContext.status = status
-		return <Redirect from={from} to={to}/>
+			staticContext.status = route.status
+		return <Redirect to={route.to}/>
 	}}/>
 )
 

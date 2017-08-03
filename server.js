@@ -4,7 +4,9 @@ import express from 'express'
 import React from 'react'
 import ReactDOMServer, { renderToString } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
+import { matchRoutes } from 'react-router-config'
 import App from './src/App'
+import routes from './src/routes'
 
 const app = express()
 
@@ -15,32 +17,33 @@ app.use(express.static(path.join(__dirname, 'build')))
 
 // Always return the main index.html, so react-router render the route in the client
 app.get('*', (req, res) => {
-	const context = {}
-	
-	// A little bit cheating to load the data
-	fs.readFile('./build/books.json', 'utf-8', (err, content) => {
-		if(!err) {
-			context.books = JSON.parse(content).books
+	const branch = matchRoutes(routes, req.url)
+	const promises = branch.map(({ route, match }) => {
+		return route.loadData ? route.loadData(match) : Promise.resolve(null)
+	})
 
-			const html = renderToString(
-				<StaticRouter
-					location={req.url}
-					context={context}
-				>
-					<App/>
-				</StaticRouter>
-			)
+	console.log(branch)
 
-			if(context.url) {
-				res.writeHead(301, {
-		      Location: context.url
-		    })
-				res.end()
-			}
+	Promise.all(promises).then(data => {
+		const context = data
+		// console.log(data)
+		/*const html = renderToString(
+			<StaticRouter
+				location={req.url}
+				context={data}
+			>
+				<App/>
+			</StaticRouter>
+		)
 
-			return res.render('index', {html})
-		}
-		else res.status(500).end()
+		if(context.url) {
+			res.writeHead(301, {
+				Location: context.url
+			})
+			res.end()
+		}*/
+		let html
+		return res.render('index', {html})
 	})
 })
 

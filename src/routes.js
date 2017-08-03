@@ -1,0 +1,44 @@
+import Home from './components/Home'
+import Book from './components/Book/'
+import BookAll from './components/Book/All'
+import BookSingle from './components/Book/Single'
+import About from './components/About'
+import RedirectWithStatus from './components/RedirectWithStatus'
+import NotFound from './components/NotFound'
+
+const routes = [
+  { path: '/',
+  	exact: true,
+    component: Home,
+  },
+  { path: '/book',
+    component: Book,
+    routes: [
+    	{
+    		path: '/book',
+    		exact: true,
+    		component: BookAll,
+        loadData: ()
+    	},
+    	{
+    		path: '/book/:slug',
+    		component: BookSingle
+    	}
+    ]
+  },
+  { path: '/about',
+    component: About,
+  },
+  {
+  	path: '/movie',
+  	component: RedirectWithStatus,
+  	status: 301,
+  	to: '/book'
+  },
+  {
+  	path: '*',
+  	component: NotFound
+  }
+]
+
+export default routes

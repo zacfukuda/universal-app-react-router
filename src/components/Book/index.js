@@ -1,12 +1,10 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
-import BookAll from './All'
-import BookSingle from './Single'
+import { Switch } from 'react-router-dom'
+import { renderRoutes } from 'react-router-config'
 
-const Book = () => (
+const Book = ({route}) => (
 	<Switch>
-		<Route exact path='/book' component={BookAll}/>
-		<Route path='/book/:slug' component={BookSingle}/>
+		{renderRoutes(route.routes)}
 	</Switch>
 )
 

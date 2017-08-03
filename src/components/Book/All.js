@@ -11,6 +11,7 @@ class BookAll extends Component {
 		this.state = this.props.staticContext || {
 			books: []
 		}
+		console.log(this)
 	}
 
 	componentDidMount() {
@@ -21,6 +22,12 @@ class BookAll extends Component {
 					books: json.books
 				})
 		})
+	}
+
+	loadData() {
+		return fetch('/books.json')
+		.then(res => res.json())
+		.then( json => json)
 	}
 
 	render() {

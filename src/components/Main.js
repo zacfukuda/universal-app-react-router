@@ -1,19 +1,12 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
-import Home from './Home'
-import Book from './Book/'
-import About from './About'
-import RedirectWithStatus from './RedirectWithStatus'
-import NotFound from './NotFound'
+import { Switch } from 'react-router-dom'
+import { renderRoutes } from 'react-router-config'
+import routes from '../routes'
 
 const Main = () => (
 	<main>
 		<Switch>
-			<Route exact path='/' component={Home}/>
-			<Route path='/book' component={Book}/>
-			<Route path='/about' component={About}/>
-			<RedirectWithStatus  status={301} from="/movie" to="/book"/>
-			<Route path='*' component={NotFound}/>
+			{renderRoutes(routes)}
 		</Switch>
 	</main>
 )
