@@ -9,31 +9,41 @@ The official tutorial will be available at [https://www.mokuji.me](https://www.m
 
 ## Motivation
 1. **Centralized Routes**
-	With the support of [React Router Config](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config), all routes are managed in `src/routes.js`, and the rendering code was optimized. This also enbles us to render data components on the server.
+
+	With the support of [React Router Config](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config), all routes are managed in `src/routes.js`, and the rendering code was optimized. This also enables us to render data components on the server.
 2. **Server-side Rendering with Fetch Data**
+
 	Rather than the data are not pre-defined as a variable inside Javascript file, the app fetches `books` data which is saved as in JSON file and renders data component on both front and server side.
 
 ## Pages
 This app has the following pages.
-1. Top (/)
-2. Book (/book)
-	1. List of Books (/book)
+- Top (/)
+- Book (/book)
+	- List of Books (/book)
 	2. Book Detail (/book/:slug)
-3. Movie (Redirect to Book) (/movie)
-4. 404 (/foo)
+- Movie (Redirect to Book) (/movie)
+- 404 (/foo)
 
 ## Scripts
-This project was initialized with [create-react-app](https://github.com/facebookincubator/create-react-app). However, some modification has been done in order to make it universal.
+This project was initialized with [create-react-app](https://github.com/facebookincubator/create-react-app). However, some modifications have been done in order to make it universal.
 
 - **build**: react-scripts build && node scripts/build2.js
+
 	Build the production files based on the client-side app. The `build2.js` generates an `index.ejs` based on the `index.html` built by the proceeding script.
+
 - **watch**: webpack --watch
+
 	Build non-hashed Javascript and CSS files, watching the file changes.
+
 - **server**: nodemon server.js --watch server.js --watch src --exec babel-node
 	Run the production app.
+
 - **server-dev**: DEVELOPMENT=true nodemon server.js --watch server.js --watch src --exec babel-node
+
 	Run the development app. Non-hashed file must be built with `watch` before the initial run.
+
 - **server-dev:watch**: npm-run-all --parallel server-dev watch
+
 	Run the development app with generating non-hashed files as watching file changes. Usually this script is to be used instead of `watch` and server-dev when you develop the server-side.
 
 ## Use
@@ -54,7 +64,7 @@ To develop as a client-side single-page app:
 ```bash
 $ yarn start
 ```
-The command will open the browser navigating to [localhost:3000](http://localhost:3000) and the browser will be refreshed  everytime you modify the files under `src` directory.
+The command will open the browser navigating to [localhost:3000](http://localhost:3000) and the browser will be refreshed  every time you modify the files under `src` directory.
 
 ### Universal App
 Build & run the app:
