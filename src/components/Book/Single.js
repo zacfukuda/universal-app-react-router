@@ -22,10 +22,10 @@ class BookSingle extends Component {
 	componentDidMount () {
 		let slug = this.state.slug
 		fetch('/books.json')
-			.then(res => res.json())
-			.then((json) => {
-				let book = json.books.find(book => book.slug === slug)
-				this.setState({book: book})
+		.then(res => res.json())
+		.then((json) => {
+			let book = json.books.find(book => book.slug === slug)
+			this.setState({book: book})
 		})
 	}
 

@@ -9,40 +9,41 @@ import App from './src/App'
 import routes from './src/routes'
 
 const app = express()
+const viewPath = process.env.DEVELOPMENT ? 'view' : 'build'
 
 // Set view engine & serve static assets
 app.set('view engine', 'ejs')
-app.set('views', path.join(__dirname, 'build'))
+app.set('views', path.join(__dirname, viewPath))
 app.use(express.static(path.join(__dirname, 'build')))
 
 // Always return the main index.html, so react-router render the route in the client
 app.get('*', (req, res) => {
 	const branch = matchRoutes(routes, req.url)
-	const promises = branch.map(({ route, match }) => {
-		return route.loadData ? route.loadData(match) : Promise.resolve(null)
+	const promises = []
+
+	branch.forEach( ({route, match}) => {
+		if (route.loadData)
+			promises.push(route.loadData(match))
 	})
 
-	console.log(branch)
-
 	Promise.all(promises).then(data => {
-		const context = data
+		// data will be an array[] of datas returned by each promises.
 		// console.log(data)
-		/*const html = renderToString(
-			<StaticRouter
-				location={req.url}
-				context={data}
-			>
+
+		const context = data.reduce( (context, data) => {
+			return Object.assign(context, data)
+		}, {})
+
+		const html = renderToString(
+			<StaticRouter location={req.url} context={context} >
 				<App/>
 			</StaticRouter>
 		)
 
 		if(context.url) {
-			res.writeHead(301, {
-				Location: context.url
-			})
+			res.writeHead(301, {Location: context.url})
 			res.end()
-		}*/
-		let html
+		}
 		return res.render('index', {html})
 	})
 })

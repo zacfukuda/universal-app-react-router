@@ -6,15 +6,37 @@ This repository is a sample code of the very, very simple Universal React Applic
 
 The official tutorial will be available at [https://www.mokuji.me](https://www.mokuji.me) shortly.
 
-> This project was initialized with [create-react-app](https://github.com/facebookincubator/create-react-app) and had been developed using its default npm script for the development of the client side app. The new script is added to run the server side app.
-
 ## Motivation
-This sample code provides the example of how to render __data-fetched HTML on the server side__ in order to improve SEO.
+1. Centralized Routes
+⋅⋅⋅ With the support of [React Router Config](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config), all routes are managed in `src/routes.js`, and the rendering code was optimized. This also enbles us to render data components on the server.
+2. Server-side Rendering with Fetch Data
+⋅⋅⋅ Rather than the data are not pre-defined as a variable inside Javascript file, the app fetches `books` data which is saved as in JSON file and renders data component on both front and server side.
 
-There are many tutorials covering the universal app and React Router. There are, however, only a few that’re concerning the practical use of React. In most tutorials, the sample code contains `data` values pre-defined inside Javascript file, although those datas are usualy fetched from the server on the client side in the real-world app. Just simply fetcing data on the server side does’t render the HTML component that you want it to be rendered because those data-based components return the result of `render()` before finishing fetching data.
+## Pages
+This app has the following pages.
+1. Top (/)
+2. Book (/book)
+	1. List of Books (/book)
+	2. Book Detail (/book/:slug)
+3. Movie (Redirect to Book) (/movie)
+4. 404 (/foo)
+
+## Scripts
+This project was initialized with [create-react-app](https://github.com/facebookincubator/create-react-app). However, some modification has been done in order to make it universal.
+
+* _build_: react-scripts build && node scripts/build2.js
+··· Build the production files based on the client-side app. The `build2.js` generates an `index.ejs` based on the `index.html` built by the proceeding script.
+* _watch_: webpack --watch
+··· Build non-hashed Javascript and CSS files, watching the file changes.
+* _server_: nodemon server.js --watch server.js --watch src --exec babel-node
+··· Run the production app.
+* _server-dev_: DEVELOPMENT=true nodemon server.js --watch server.js --watch src --exec babel-node
+··· Run the development app. Non-hashed file must be built with `watch` before the initial run.
+* _server-dev:watch_: npm-run-all --parallel server-dev watch
+··· Run the development app with generating non-hashed files as watching file changes. Usually this script is to be used instead of `watch` and server-dev when you develop the server-side.
 
 ## Use
-Clone the repo and change the current directory:
+Clone the repo and change the working directory:
 ```bash
 $ git clone https://github.com/zacfukuda/universal-app-react-router
 $ cd universal-app-react-router
@@ -26,34 +48,39 @@ $ yarn
 $ npm install
 ```
 
-### Frontend Single Page App
+### Client-side Single Page App
 To develop as a client-side single-page app:
 ```bash
 $ yarn start
 ```
-The command will open the browser navigating to (localhost:3000)[http://localhost:3000] and it will refresh browser everytime you modify the files under `src` directory.
+The command will open the browser navigating to [localhost:3000](http://localhost:3000) and the browser will be refreshed  everytime you modify the files under `src` directory.
 
-### Frontend Single Page App
-Build the app:
+### Universal App
+Build & run the app:
 ```bash
 $ yarn build
-```
-
-Modify the `div` element to `<div id="root"><%- html %></div>` inside of `build/index.html`.
-Then change the name of the file:
-```bash
-$ mv build/index.html build/index.ejs
-```
-
-Run server:
-```bash
 $ yarn server
 ```
 
-Visit [localhost:3000](http://localhost:3000) and the source of the home page or [the books page](http://localhost:3000/books). You’ll see the all contents are rendered from the server.
+Visit [localhost:3000](http://localhost:3000) and the source of the home page or [the books page](http://localhost:3000/books). You’ll see the all contents are rendered on the server.
 
-### If not change the name to index.ejs
-If you are opening `/` page, you can still refresh the app. But if you are at the lower page such as `/books`, `/about`, you get the error when you refesh due to the app can’t find the corresponding view file.
+### Server-side Development
+Build & watch file changes:
+```bash
+$ yarn watch
+```
+
+Run the app in the development mode (Serve `index.ejs` from `view` directory):
+```bash
+$ server-dev
+```
+
+Run the two command above in parallel:
+```bash
+$ yarn server-dev:watch
+```
+
+Most of the cases, `server-dev:watch` is sufficient.
 
 ## Reference
 ### Doc & Repo

@@ -8,26 +8,17 @@ polyfill()
 class BookAll extends Component {
 	constructor(props) {
 		super(props)
-		this.state = this.props.staticContext || {
-			books: []
-		}
-		console.log(this)
+		this.state = this.props.staticContext || { books: [] }
 	}
 
 	componentDidMount() {
 		fetch('/books.json')
-			.then(res => res.json())
-			.then((json) => {
-				this.setState({
-					books: json.books
-				})
-		})
-	}
-
-	loadData() {
-		return fetch('/books.json')
 		.then(res => res.json())
-		.then( json => json)
+		.then((json) => {
+			this.setState({
+				books: json.books
+			})
+		})
 	}
 
 	render() {
@@ -38,8 +29,10 @@ class BookAll extends Component {
 		))
 		return (
 			<div>
-				<h2>Books</h2>
-				<ul>{books}</ul>
+				<div>
+					<h2>Books</h2>
+					<ul>{books}</ul>
+				</div>
 			</div>
 		)
 	}
