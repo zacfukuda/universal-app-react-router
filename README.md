@@ -21,7 +21,7 @@ The application has the following pages.
 - Home [/]
 - Book [/book]
 	- List of Books [/book]
-	2. Book Detail [/book/:slug]
+	- Book Detail [/book/:slug]
 - Movie (Redirect to Book) [/movie]
 - 404 [/foo]
 
@@ -34,7 +34,7 @@ This project was initialized with [create-react-app](https://github.com/facebook
 
 - **server**: Run the production app.
 
-- **server-dev**: Run the development app serving the `index.ejs` from `view` directory. Non-hashed files must be built with `watch` before the initial run.
+- **server-dev**: Run the development app, serving the `index.ejs` from `view` directory. Non-hashed files must be built with `watch` before the initial run.
 
 - **server-dev:watch**: Run the development app with generating non-hashed files as watching file changes. Usually this script is to be used instead of `watch` and `server-dev` when you develop the server-side application.
 
