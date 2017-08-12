@@ -1,16 +1,17 @@
 # Simple Universal React App with React Router & Express.js
 
-*Published August 1st, 2017* 
+*Published August 1, 2017* 
+*Updated August 12, 2017* 
 
 This repository is a sample code of the very, very simple Universal React Application, using [React Router](https://github.com/ReactTraining/react-router) version 4 and Express.js.
 
 The official tutorial will be available at [https://www.mokuji.me](https://www.mokuji.me) shortly.
 
 ## Motivation
-1. Centralized Routes
-⋅⋅⋅ With the support of [React Router Config](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config), all routes are managed in `src/routes.js`, and the rendering code was optimized. This also enbles us to render data components on the server.
-2. Server-side Rendering with Fetch Data
-⋅⋅⋅ Rather than the data are not pre-defined as a variable inside Javascript file, the app fetches `books` data which is saved as in JSON file and renders data component on both front and server side.
+1. **Centralized Routes**
+	With the support of [React Router Config](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config), all routes are managed in `src/routes.js`, and the rendering code was optimized. This also enbles us to render data components on the server.
+2. **Server-side Rendering with Fetch Data**
+	Rather than the data are not pre-defined as a variable inside Javascript file, the app fetches `books` data which is saved as in JSON file and renders data component on both front and server side.
 
 ## Pages
 This app has the following pages.
@@ -24,16 +25,16 @@ This app has the following pages.
 ## Scripts
 This project was initialized with [create-react-app](https://github.com/facebookincubator/create-react-app). However, some modification has been done in order to make it universal.
 
-* _build_: react-scripts build && node scripts/build2.js
-··· Build the production files based on the client-side app. The `build2.js` generates an `index.ejs` based on the `index.html` built by the proceeding script.
-* _watch_: webpack --watch
-··· Build non-hashed Javascript and CSS files, watching the file changes.
-* _server_: nodemon server.js --watch server.js --watch src --exec babel-node
-··· Run the production app.
-* _server-dev_: DEVELOPMENT=true nodemon server.js --watch server.js --watch src --exec babel-node
-··· Run the development app. Non-hashed file must be built with `watch` before the initial run.
-* _server-dev:watch_: npm-run-all --parallel server-dev watch
-··· Run the development app with generating non-hashed files as watching file changes. Usually this script is to be used instead of `watch` and server-dev when you develop the server-side.
+- **build**: react-scripts build && node scripts/build2.js
+	Build the production files based on the client-side app. The `build2.js` generates an `index.ejs` based on the `index.html` built by the proceeding script.
+- **watch**: webpack --watch
+	Build non-hashed Javascript and CSS files, watching the file changes.
+- **server**: nodemon server.js --watch server.js --watch src --exec babel-node
+	Run the production app.
+- **server-dev**: DEVELOPMENT=true nodemon server.js --watch server.js --watch src --exec babel-node
+	Run the development app. Non-hashed file must be built with `watch` before the initial run.
+- **server-dev:watch**: npm-run-all --parallel server-dev watch
+	Run the development app with generating non-hashed files as watching file changes. Usually this script is to be used instead of `watch` and server-dev when you develop the server-side.
 
 ## Use
 Clone the repo and change the working directory:
