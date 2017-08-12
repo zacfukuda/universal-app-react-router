@@ -1,8 +1,6 @@
 # Simple Universal React App with React Router & Express.js
 
-*Published August 1, 2017* 
-
-*Updated August 12, 2017*
+*Published August 12, 2017* 
 
 This repository is a sample code of the very, very simple Universal React Application, using [React Router](https://github.com/ReactTraining/react-router) version 4 and Express.js.
 
