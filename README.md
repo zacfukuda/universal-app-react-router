@@ -4,7 +4,7 @@
 
 This repository is a sample code of the very, very simple Universal React Application, using [React Router](https://github.com/ReactTraining/react-router) version 4 and Express.js.
 
-The official tutorial will be available at [https://www.mokuji.me](https://www.mokuji.me) shortly.
+The official tutorial is available at https://www.mokuji.me/article/universal-app-react-router.
 
 ## Motivation
 1. **Centralized Routes**
