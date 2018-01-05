@@ -73,7 +73,7 @@ $ yarn watch
 
 Run the app in the development mode:
 ```bash
-$ server-dev
+$ yarn server-dev
 ```
 
 Run the two command above in parallel:
