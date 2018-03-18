@@ -3,12 +3,13 @@ import { BrowserRouter } from 'react-router-dom'
 import { renderRoutes } from 'react-router-config';
 import Header from './components/Header';
 import routes from './routes'
-import Root from './Root'
+import Main from './components/Main'
 
-const App = () => (
-  <BrowserRouter>
-    {renderRoutes(routes)}
-  </BrowserRouter>
+const Root = ({ route }) => (
+  <div>
+    <Main routes={route.routes}/>
+  </div>
+
 )
 
-export default App
+export default Root;

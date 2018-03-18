@@ -1,3 +1,5 @@
+import App from './App'
+import Root from './Root'
 import Home from './components/Home'
 import Book from './components/Book/'
 import BookAll from './components/Book/All'
@@ -18,40 +20,44 @@ const loadData  = (match) => {
 }
 
 const routes = [
-	{ path: '/',
-		exact: true,
-		component: Home,
-	},
-	{ path: '/book',
-		component: Book,
-		routes: [
-			{
-				path: '/book',
-				exact: true,
-				component: BookAll,
-				loadData: loadData
-			},
-			{
-				path: '/book/:slug',
-				component: BookSingle,
-				loadData: loadData
-			}
-		]
-	},
-	{ path: '/about',
-		component: About,
+  { component: Root,
+    routes: [
+      { path: '/',
+    		exact: true,
+    		component: Home,
+    	},
+    	{ path: '/book',
+    		component: Book,
+    		routes: [
+    			{
+    				path: '/book',
+    				exact: true,
+    				component: BookAll,
+    				loadData: loadData
+    			},
+    			{
+    				path: '/book/:slug',
+    				component: BookSingle,
+    				loadData: loadData
+    			}
+    		]
+    	},
+    	{ path: '/about',
+    		component: About,
 
-	},
-	{
-		path: '/movie',
-		component: RedirectWithStatus,
-		status: 301,
-		to: '/book'
-	},
-	{
-		path: '*',
-		component: NotFound
-	}
+    	},
+    	{
+    		path: '/movie',
+    		component: RedirectWithStatus,
+    		status: 301,
+    		to: '/book'
+    	},
+    	{
+    		path: '*',
+    		component: NotFound
+    	}
+    ]
+  }
 ]
 
 export default routes
