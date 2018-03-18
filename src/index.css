@@ -76,3 +76,7 @@ nav > ul > li > a:hover,
 nav > ul > li > a:visited:hover {
 	color: #c10c0c;
 }
+.active {
+  text-decoration: underline;
+  font-weight: bolder;
+}
